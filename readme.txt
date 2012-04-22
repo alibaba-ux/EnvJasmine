@@ -33,7 +33,9 @@ TODO List:
 -2: Integratin testing for component
 
 Hot to get help?
- Email: zhouquan.yezq@alibaba-inc.com             
+ Email: 
+ qijun.weiqj@alibaba-inc.com
+ zhouquan.yezq@alibaba-inc.com             
 
 Based on info from:
     * "EnvJasmine": https://github.com/trevmex/EnvJasmine
