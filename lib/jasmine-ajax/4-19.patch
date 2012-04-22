@@ -1,0 +1,52 @@
+Index: mock-ajax.js
+===================================================================
+--- mock-ajax.js	(revision 109318)
++++ mock-ajax.js	(working copy)
+@@ -93,7 +93,6 @@
+     },
+ 
+     responseText: null,
+-
+     response: function(response) {
+       this.status = response.status;
+       this.responseText = response.responseText || "";
+@@ -102,8 +101,14 @@
+       {"Content-type": response.contentType || "application/json" };
+       // uncomment for jquery 1.3.x support
+       // jasmine.Clock.tick(20);
++      this.onreadystatechange();
++      var x=response.xhr;
+ 
+-      this.onreadystatechange();
++      if(response.status==200){
++        x.success(response.responseText);
++      }else{
++        x.error?x.error():'';
++      }
+     },
+     responseTimeout: function() {
+       this.readyState = 4;
+@@ -151,6 +156,13 @@
+   installJquery: function() {
+     jasmine.Ajax.mode = 'jQuery';
+     jasmine.Ajax.real = jQuery.ajaxSettings.xhr;
++      (function( xhr ) {
++    jQuery.extend( jQuery.support, {
++      ajax: !!xhr,
++      cors: !!xhr && ( "withCredentials" in xhr )
++    });
++  })( jQuery.ajaxSettings.xhr() );
++
+     jQuery.ajaxSettings.xhr = jasmine.Ajax.jQueryMock;
+ 
+   },
+Index: spec-helper.js
+===================================================================
+--- spec-helper.js	(revision 109318)
++++ spec-helper.js	(working copy)
+@@ -6,4 +6,5 @@
+ 
+ afterEach(function() {
+     clearAjaxRequests();
++    jasmine.Ajax.reset();
+ });
