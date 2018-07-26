@@ -42,5 +42,5 @@ Based on info from:
     * "JavaScript BDD, with Jasmine, without a browser":http://www.build-doctor.com/2010/12/08/javascript-bdd-jasmine/
     * "Rhino":http://www.mozilla.org/rhino/
     * "EnvJS":http://www.envjs.com/
-    * "Jasmine":http://pivotal.github.com/jasmine/
+    * "Jasmine":https://jasmine.github.io/
     * "Jasmine Jquery":https://github.com/velesin/jasmine-jquery
